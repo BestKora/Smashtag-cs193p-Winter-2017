@@ -29,7 +29,7 @@ class TweetTableViewCell: UITableViewCell
         
         tweetTextLabel?.attributedText  = setTextLabel(tweet)
         tweetUserLabel?.text = tweet?.user.description
-        setProfileImageView(tweet) // tweetProfileImageView updated asynchronously
+        setProfileImageView(tweet) // tweetProfileImageView обновляем асинхронно
         
         if let created = tweet?.created {
             let formatter = DateFormatter()
@@ -47,24 +47,23 @@ class TweetTableViewCell: UITableViewCell
     private func setProfileImageView(_ tweet: Twitter.Tweet?) {
         tweetProfileImageView?.image = nil
         guard let tweet = tweet,
-              let profileImageURL = tweet.user.profileImageURL else {return}
-            // MARK: Fetch data off the main queue
-            DispatchQueue.global(qos: .userInitiated).async {[weak self]  in
+            let profileImageURL = tweet.user.profileImageURL else {return}
+        
+        // MARK: Выбираем данные за пределами main queue
+        DispatchQueue.global(qos: .userInitiated).async {[weak self]  in
+            
+            let contentsOfURL = try? Data(contentsOf: profileImageURL)
+            if profileImageURL == tweet.user.profileImageURL,
+                let imageData = contentsOfURL  {
                 
-                let contentsOfURL = try? Data(contentsOf: profileImageURL)
-                
-                // MARK: UI -> Back to main queue
+                // MARK: UI -> Возвращаемся на main queue
                 DispatchQueue.main.async {
-                    if profileImageURL == tweet.user.profileImageURL {
-                        if let imageData = contentsOfURL  {
-                            
-                            self?.tweetProfileImageView?.image = UIImage(data: imageData)
-                            
-                        }
-                    }
+                    self?.tweetProfileImageView?.image = UIImage(data: imageData)
+                    
                 }
             }
         }
+    }
 
 
     private func setTextLabel(_ tweet: Twitter.Tweet?) -> NSMutableAttributedString {

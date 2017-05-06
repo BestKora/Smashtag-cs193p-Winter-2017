@@ -21,15 +21,15 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
 {
     // MARK: Model
 
-    // part of our Model
+    // part нашей Model
     // each sub-Array of Tweets is another "pull" from Twitter
     // and corresponds to a section in our table
     private var tweets = [Array<Twitter.Tweet>]()
     
-    // public part of our Model
-    // when this is set
-    // we'll reset our tweets Array
-    // to reflect the result of fetching Tweets that match
+    // public часть нашей Model
+    // когда она устанавливается
+    // мы должны переустановить наш массив tweets
+    // отразив результаты выборки подходящих твитов Tweets
     var searchText: String? {
         didSet {
             searchTextField?.text = searchText
@@ -39,6 +39,9 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
             tableView.reloadData()
             searchForTweets()
             title = searchText
+            if let term = searchText {
+                RecentSearches.add(term)
+            }
         }
     }
     
@@ -91,12 +94,19 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // we use the row height in the storyboard as an "estimate"
+        // мы используем высоту строки на storyboard как "оценочную"
         tableView.estimatedRowHeight = tableView.rowHeight
-        // but use whatever autolayout says the height should be as the actual row height
+        // но реальная высота определяется autolayout
         tableView.rowHeight = UITableViewAutomaticDimension
-        // the row height could alternatively be set
-        // using the UITableViewDelegate method heightForRowAt
+        // альтернативно высота строки могла быть установлена
+        // с использованием метода heightForRowAt делегата
+        
+        if searchText == nil, let searchLast = RecentSearches.searches.first {
+            searchText = searchLast
+        } else {
+            searchTextField?.text = searchText
+            searchTextField?.resignFirstResponder()
+        }
     }
     
     // MARK: Search Text Field
