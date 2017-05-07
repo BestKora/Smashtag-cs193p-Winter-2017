@@ -109,6 +109,33 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setPopToRootButton()
+    }
+    
+    func setPopToRootButton() {
+        if let controllers = navigationController?.viewControllers, controllers.count >= 2 {
+            let toRootButton = UIBarButtonItem(barButtonSystemItem: .stop,
+                                               target: self,
+                                               action: #selector(toRootViewController))
+            if let buttons = navigationItem.rightBarButtonItems{
+                let con = buttons.flatMap{$0.action}.contains( #selector(toRootViewController))
+                if !con {
+                    let rightBarButtons = [toRootButton] + buttons
+                    navigationItem.setRightBarButtonItems(rightBarButtons, animated: true)
+                }
+            } else {
+                let rightBarButtons = [toRootButton]
+                navigationItem.setRightBarButtonItems(rightBarButtons, animated: true)
+            }
+        }
+    }
+    
+    func toRootViewController() {
+        _ = navigationController?.popToRootViewController(animated: true)
+    }
+    
     // MARK: Search Text Field
 
     // set ourself to be the UITextFieldDelegate

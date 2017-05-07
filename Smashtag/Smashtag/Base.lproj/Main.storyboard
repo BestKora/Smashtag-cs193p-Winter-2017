@@ -197,16 +197,19 @@
                     <navigationItem key="navigationItem" title="Mensions" id="E7w-In-gCK">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Zm8-F5-TLQ">
                             <connections>
-                                <action selector="toRootViewController:" destination="rig-tD-0f4" id="CdG-Yk-vHa"/>
+                                <action selector="toRootViewController:" destination="rig-tD-0f4" id="FXD-HF-xn4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="1qt-fE-asm" kind="show" identifier="Show URL" id="Buf-Pq-Xfh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MNh-N3-Hiu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="274" y="-244"/>
         </scene>
-        <!--Image-->
+        <!--Image View-->
         <scene sceneID="8GN-z8-3Vw">
             <objects>
                 <viewController id="jDY-ul-Ook" customClass="ImageViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
@@ -242,7 +245,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Image" id="Vm1-US-Gdg">
+                    <navigationItem key="navigationItem" title="Image View" id="Vm1-US-Gdg">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="hUg-A0-qVA">
                             <connections>
                                 <action selector="toRootViewController:" destination="jDY-ul-Ook" id="WJW-Ei-Vqb"/>
@@ -336,8 +339,69 @@
             </objects>
             <point key="canvasLocation" x="-2106" y="90"/>
         </scene>
+        <!--Web View-->
+        <scene sceneID="iY6-Cf-1Pn">
+            <objects>
+                <viewController id="1qt-fE-asm" customClass="WebViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DBk-gX-ycD"/>
+                        <viewControllerLayoutGuide type="bottom" id="JHc-xv-DRb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Eg-28-qcO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1S4-Dn-rwW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xY0-U2-Ywq">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1S4-Dn-rwW" firstAttribute="centerX" secondItem="xY0-U2-Ywq" secondAttribute="centerX" id="2Yz-Cw-m4C"/>
+                            <constraint firstAttribute="centerX" secondItem="xY0-U2-Ywq" secondAttribute="centerX" id="3Ls-pH-Tyj"/>
+                            <constraint firstItem="xY0-U2-Ywq" firstAttribute="centerX" secondItem="2Eg-28-qcO" secondAttribute="centerX" id="53U-oD-eyf"/>
+                            <constraint firstItem="xY0-U2-Ywq" firstAttribute="centerY" secondItem="2Eg-28-qcO" secondAttribute="centerY" id="Cdb-D8-dMY"/>
+                            <constraint firstAttribute="centerY" secondItem="xY0-U2-Ywq" secondAttribute="centerY" id="Df2-r8-8Fb"/>
+                            <constraint firstItem="xY0-U2-Ywq" firstAttribute="centerX" secondItem="2Eg-28-qcO" secondAttribute="centerX" id="H4c-Gg-dyP"/>
+                            <constraint firstItem="1S4-Dn-rwW" firstAttribute="bottom" secondItem="JHc-xv-DRb" secondAttribute="top" id="QtP-HO-xq2"/>
+                            <constraint firstItem="1S4-Dn-rwW" firstAttribute="top" secondItem="2Eg-28-qcO" secondAttribute="top" id="XNW-B0-bOm"/>
+                            <constraint firstItem="xY0-U2-Ywq" firstAttribute="centerX" secondItem="1S4-Dn-rwW" secondAttribute="centerX" id="YTv-hs-ZCz"/>
+                            <constraint firstItem="xY0-U2-Ywq" firstAttribute="centerY" secondItem="2Eg-28-qcO" secondAttribute="centerY" id="mhC-0h-tWP"/>
+                            <constraint firstItem="1S4-Dn-rwW" firstAttribute="leading" secondItem="2Eg-28-qcO" secondAttribute="leading" id="qxO-ed-dwx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2Yz-Cw-m4C"/>
+                                <exclude reference="H4c-Gg-dyP"/>
+                                <exclude reference="3Ls-pH-Tyj"/>
+                                <exclude reference="Df2-r8-8Fb"/>
+                                <exclude reference="mhC-0h-tWP"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Web View" id="GvZ-H5-lL0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="JsE-1P-fbM">
+                            <connections>
+                                <action selector="toRootViewController:" destination="1qt-fE-asm" id="w1c-2g-GP4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="spinner" destination="xY0-U2-Ywq" id="xqs-Hx-CEz"/>
+                        <outlet property="webView" destination="1S4-Dn-rwW" id="dsh-65-yDb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n5e-kD-mYR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1101.5999999999999" y="-244.22788605697153"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3zd-dL-WJk"/>
+        <segue reference="J6q-Oi-soo"/>
     </inferredMetricsTieBreakers>
 </document>

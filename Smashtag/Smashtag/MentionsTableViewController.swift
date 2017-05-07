@@ -54,10 +54,19 @@ class MentionsTableViewController: UITableViewController {
             mentionSections.append(MentionSection(type: "Hashtags",
                 mentions: tweet.hashtags.map{ MentionItem.keyword($0.keyword)}))
         }
+        var userItems = [MentionItem]()
+        
+        //------- Extra Credit 1 -------------
+        userItems += [MentionItem.keyword("@" + tweet.user.screenName )]
+        //------------------------------------------------
+       
         if tweet.userMentions.count > 0 {
-            mentionSections.append(MentionSection(type: "Users",
-                mentions: tweet.userMentions.map{ MentionItem.keyword($0.keyword)}))
+            userItems += tweet.userMentions.map { MentionItem.keyword($0.keyword) }
         }
+        if userItems.count > 0 {
+            mentionSections.append(MentionSection(type: "Users", mentions: userItems))
+        }
+        
         return mentionSections
     }
     
@@ -119,18 +128,18 @@ class MentionsTableViewController: UITableViewController {
        _ = navigationController?.popToRootViewController(animated: true)
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String?,
+    override func shouldPerformSegue(withIdentifier identifier: String,
                                      sender: Any?) -> Bool {
         if identifier == Storyboard.KeywordSegue {
             if let cell = sender as? UITableViewCell,
                 let indexPath =  tableView.indexPath(for: cell),
                 mentionSections[indexPath.section].type == "URLs" {
                 
-                if let urlString = cell.textLabel?.text,
+             /*  if let urlString = cell.textLabel?.text,
                     let url = URL(string:urlString) {
                     
                     let safariVC = SFSafariViewController(url: url)
-                    present(safariVC, animated: true, completion: nil)
+                     present(safariVC, animated: true, completion: nil)
                     
                     //   if #available(iOS 10.0, *) {
                     //       UIApplication.shared.open(url, options: [:],
@@ -138,11 +147,13 @@ class MentionsTableViewController: UITableViewController {
                     //   } else {
                     //       UIApplication.shared.openURL(url)
                     //   }
-                }
+                } 
+            */
+                performSegue(withIdentifier: Storyboard.WebSegue, sender: sender)
                 return false
             }
         }
-        return true
+        return super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
     }
     
     private struct Storyboard {
@@ -151,6 +162,7 @@ class MentionsTableViewController: UITableViewController {
         
         static let KeywordSegue = "From Keyword"
         static let ImageSegue = "Show Image"
+        static let WebSegue = "Show URL"
         
     }
 
@@ -160,7 +172,8 @@ class MentionsTableViewController: UITableViewController {
             if identifier == Storyboard.KeywordSegue {
                 if let ttvc = segue.destination as? TweetTableViewController,
                     let cell = sender as? UITableViewCell,
-                    let text = cell.textLabel?.text {
+                    var text = cell.textLabel?.text {
+                    if text.hasPrefix("@") {text += " OR from:" + text} //Extra Credit 2
                     ttvc.searchText = text
                 }
                 
@@ -172,11 +185,16 @@ class MentionsTableViewController: UITableViewController {
                     ivc.title = title
                     
                 }
+            } else if identifier == Storyboard.WebSegue {
+                if let wvc = segue.destination as? WebViewController {
+                    if let cell = sender as? UITableViewCell {
+                        if let url = cell.textLabel?.text {
+                            
+                            wvc.URL = URL(string: url)
+                        }
+                    }
+                }
             }
         }
     }
 }
-
-
-
-//if text.hasPrefix("@") {text += " OR from:" + text} //  Extra Credit 2
