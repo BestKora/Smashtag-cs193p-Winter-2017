@@ -20,16 +20,17 @@ import Twitter
 class TweetTableViewController: UITableViewController, UITextFieldDelegate
 {
     // MARK: Model
-
     // part нашей Model
     // each sub-Array of Tweets is another "pull" from Twitter
     // and corresponds to a section in our table
+    
     private var tweets = [Array<Twitter.Tweet>]()
     
     // public часть нашей Model
     // когда она устанавливается
     // мы должны переустановить наш массив tweets
     // отразив результаты выборки подходящих твитов Tweets
+    
     var searchText: String? {
         didSet {
             searchTextField?.text = searchText
@@ -44,6 +45,16 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
             }
         }
     }
+    // public часть нашей Model
+    // для установки твитов извне
+    var newTweets = Array<Twitter.Tweet> () {
+        didSet {
+            tweets.insert(newTweets, at:0)
+            tableView.insertSections([0], with: .fade)
+        }
+    }
+    
+
     
     // MARK: Updating the Table
     
@@ -101,11 +112,13 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         // альтернативно высота строки могла быть установлена
         // с использованием метода heightForRowAt делегата
         
-        if searchText == nil, let searchLast = RecentSearches.searches.first {
-            searchText = searchLast
-        } else {
-            searchTextField?.text = searchText
-            searchTextField?.resignFirstResponder()
+        if tweets.count == 0 {
+            if searchText == nil, let searchLast = RecentSearches.searches.first {
+                searchText = searchLast
+            } else {
+                searchTextField?.text = searchText
+                searchTextField?.resignFirstResponder()
+            }
         }
     }
     
@@ -203,17 +216,21 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         
     }
     
-  // MARK: - Navitation
-
+    // MARK: - Navitation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == Storyboard.MentionsIdentifier,
                 let mtvc = segue.destination as? MentionsTableViewController,
                 let tweetCell = sender as? TweetTableViewCell {
-                
                 mtvc.tweet = tweetCell.tweet
+                
+            } else if identifier == Storyboard.ImagesIdentifier {
+                if let icvc = segue.destination as? ImageCollectionViewController {
+                    icvc.tweets = tweets
+                    icvc.title = "Images: \(searchText!)"
+                }
             }
         }
     }
-
 }
