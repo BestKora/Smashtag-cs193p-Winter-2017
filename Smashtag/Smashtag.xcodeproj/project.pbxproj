@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E41681D31EC0C95200FB0999 /* RecentSearches.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41681D21EC0C95200FB0999 /* RecentSearches.swift */; };
 		E4242CDC1EBB4C8B008BFFD0 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4242CDB1EBB4C8B008BFFD0 /* Twitter.framework */; };
 		E4242CDD1EBB4C8B008BFFD0 /* Twitter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E4242CDB1EBB4C8B008BFFD0 /* Twitter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E4242CDF1EBB7044008BFFD0 /* MentionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4242CDE1EBB7044008BFFD0 /* MentionsTableViewController.swift */; };
 		E4242CE11EBB7B7B008BFFD0 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4242CE01EBB7B7B008BFFD0 /* ImageTableViewCell.swift */; };
 		E4242CE31EBCD2C4008BFFD0 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4242CE21EBCD2C4008BFFD0 /* ImageViewController.swift */; };
-		E4242CE61EBDBC76008BFFD0 /* RecentSearches.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4242CE51EBDBC76008BFFD0 /* RecentSearches.swift */; };
 		E4242CE81EBDBF2C008BFFD0 /* RecentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4242CE71EBDBF2C008BFFD0 /* RecentsTableViewController.swift */; };
 		E4242CEA1EBF0581008BFFD0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4242CE91EBF0581008BFFD0 /* WebViewController.swift */; };
 		E4242CED1EBF7450008BFFD0 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4242CEC1EBF7450008BFFD0 /* ImageCollectionViewController.swift */; };
@@ -40,11 +40,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E41681D21EC0C95200FB0999 /* RecentSearches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearches.swift; sourceTree = "<group>"; };
 		E4242CDB1EBB4C8B008BFFD0 /* Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4242CDE1EBB7044008BFFD0 /* MentionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsTableViewController.swift; sourceTree = "<group>"; };
 		E4242CE01EBB7B7B008BFFD0 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		E4242CE21EBCD2C4008BFFD0 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
-		E4242CE51EBDBC76008BFFD0 /* RecentSearches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearches.swift; sourceTree = "<group>"; };
 		E4242CE71EBDBF2C008BFFD0 /* RecentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentsTableViewController.swift; sourceTree = "<group>"; };
 		E4242CE91EBF0581008BFFD0 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E4242CEC1EBF7450008BFFD0 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				EC7D5EC21E4BF94B009A2E85 /* Main.storyboard */,
-				E4242CE51EBDBC76008BFFD0 /* RecentSearches.swift */,
+				E41681D21EC0C95200FB0999 /* RecentSearches.swift */,
 				E4242CEC1EBF7450008BFFD0 /* ImageCollectionViewController.swift */,
 				E4242CEE1EBF7461008BFFD0 /* ImageCollectionViewCell.swift */,
 				E4242CEB1EBF740F008BFFD0 /* Controllers */,
@@ -214,9 +214,9 @@
 				E4242CEA1EBF0581008BFFD0 /* WebViewController.swift in Sources */,
 				EC7D5EBF1E4BF94B009A2E85 /* AppDelegate.swift in Sources */,
 				E4242CE11EBB7B7B008BFFD0 /* ImageTableViewCell.swift in Sources */,
-				E4242CE61EBDBC76008BFFD0 /* RecentSearches.swift in Sources */,
 				E4242CE81EBDBF2C008BFFD0 /* RecentsTableViewController.swift in Sources */,
 				EC7D5ED21E4BF992009A2E85 /* TweetTableViewController.swift in Sources */,
+				E41681D31EC0C95200FB0999 /* RecentSearches.swift in Sources */,
 				E4242CE31EBCD2C4008BFFD0 /* ImageViewController.swift in Sources */,
 				EC7D5ED81E4C0239009A2E85 /* TweetTableViewCell.swift in Sources */,
 			);
