@@ -62,7 +62,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
     // that finds tweets that match our searchText
     private func twitterRequest() -> Twitter.Request? {
         if let query = searchText, !query.isEmpty {
-            return Twitter.Request(search: query, count: 100)
+            return Twitter.Request(search: "\(query) -filter:safe -filter:retweets", count: 100)
         }
         return nil
     }
