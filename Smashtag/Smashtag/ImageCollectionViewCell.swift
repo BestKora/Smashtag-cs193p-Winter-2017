@@ -17,6 +17,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     var tweetMedia: TweetMedia?{
         didSet {
+            imageView.image = nil
             guard let url = tweetMedia?.media.url else { return }
             spinner?.startAnimating()
             
